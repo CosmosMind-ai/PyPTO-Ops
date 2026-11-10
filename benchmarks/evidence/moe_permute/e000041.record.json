@@ -1,0 +1,40 @@
+{
+ "eid": "e000041",
+ "key": "eeb8064e74e14686",
+ "ts": "2026-11-08T01:21:12+0000",
+ "verifier": null,
+ "campaign": "c3",
+ "level": "decision",
+ "holdout": null,
+ "round": 7,
+ "wave": 1,
+ "cid": "r007-w1-combined-packet-batched-payload",
+ "family": "output_owned_batched_payload",
+ "family_sha": "94960ac94d26",
+ "params": {
+  "payload_mode": 2,
+  "payload_rows": 16,
+  "route_tile": 128,
+  "output_tile": 128,
+  "col_tile": 2048
+ },
+ "source": "explicit",
+ "design": {
+  "artifact": "2bbe68364995958d"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 1,
+  "latency_us": 62.75,
+  "latency_min_us": 62.75
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 10.7,
+ "gain_pct": 76.1977,
+ "score": -0.23802298676174943
+}

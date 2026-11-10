@@ -1,0 +1,30 @@
+{
+  "eid": "e000005",
+  "campaign": "c1",
+  "round": 1,
+  "wave": 1,
+  "cid": "spmd_div",
+  "level": "decision",
+  "family": "geglu_fused_matched",
+  "family_sha": "5a1627ec0613",
+  "params": {
+    "row_tile": 8,
+    "col_tile": 64,
+    "schedule": 1,
+    "reciprocal": 0
+  },
+  "source": "promoted",
+  "design": {
+    "artifact": "fb2f990089c4b945"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "gain_pct": 39.3255,
+  "score": -0.6067448585074239,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 1,
+    "latency_us": 186.75,
+    "latency_min_us": 186.75
+  }
+}

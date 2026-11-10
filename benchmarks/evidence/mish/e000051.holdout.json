@@ -1,0 +1,14 @@
+{
+ "ts": "2026-11-09T09:25:31+0000",
+ "kind": "champion.holdout",
+ "eid": "e000051",
+ "holdout_eid": "h000006",
+ "verdict": "PASS",
+ "holdout_gain_pct": 98.3936,
+ "failed": [],
+ "holdout_metrics": {
+  "latency_us": 44.59,
+  "correct": 1
+ },
+ "contamination_flag": false
+}

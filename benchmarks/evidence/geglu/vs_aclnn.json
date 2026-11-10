@@ -1,0 +1,69 @@
+{
+ "title": "Champions vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-07",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py, latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py (pyacl + ctypes on libopapi.so): wall-clock per round (enqueue + acl.rt.synchronize_stream), median; executor fetched once and reused. Both sides end-to-end wall clock including host dispatch.",
+  "shape_policy": "m-tier shape {M:4096, N:4096}; dtype = each champion's native contract dtype"
+ },
+ "aclnn_baseline_semantics": "Our GEGLU computes gelu(g)*u on two full [M,N] tensors (tanh approx). aclnnGeGlu halves ONE tensor along a dim (different op semantics), so the native baseline is the unfused decomposition aclnnGeluV2(approximate=tanh) + aclnnMul — the composition a user would write without a fused kernel.",
+ "results": [
+  {
+   "champion": "e000005",
+   "campaign": "c1 (fp32, s-tier)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "fp32"},
+   "pypto_latency_us": null,
+   "pypto_correct": false,
+   "pypto_error": "chip run lane poisoned: finalize_native_run failed with code 507901 (kernel launches row_blocks*col_blocks = 32768 spmd blocks at 4096x4096; reproducible on 2 attempts, other kernels pass on the same card in the same session)",
+   "fallback_measurement": {
+    "shape": {"M": 2048, "N": 2048, "dtype": "fp32"},
+    "pypto_latency_us": 1467.12,
+    "pypto_correct": true,
+    "aclnn_latency_us": 42.91,
+    "aclnn_correct": true,
+    "aclnn_composition": ["aclnnGeluV2(approximate=tanh)", "aclnnMul"],
+    "speedup_pypto_vs_aclnn": 0.029
+   },
+   "note": "e000005 was crowned in the s-tier fp32 campaign (dispatch-bound small shapes); it does not launch at m-tier and is far off aclnn at 2048x2048. Recorded as-is."
+  },
+  {
+   "champion": "e000013",
+   "campaign": "c2 (bf16)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": 193.26,
+   "pypto_correct": true,
+   "aclnn_latency_us": 111.07,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 5.08e-02,
+   "aclnn_composition": ["aclnnGeluV2(approximate=tanh)", "aclnnMul"],
+   "speedup_pypto_vs_aclnn": 0.57
+  },
+  {
+   "champion": "e000063",
+   "campaign": "c4 (bf16)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": 129.97,
+   "pypto_correct": true,
+   "aclnn_latency_us": 111.07,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 5.08e-02,
+   "aclnn_composition": ["aclnnGeluV2(approximate=tanh)", "aclnnMul"],
+   "speedup_pypto_vs_aclnn": 0.86,
+   "note": "same aclnn bf16 run as e000013's row (identical shape/dtype)."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": ["/root/ptocontri/dev/aclnn_bench/res_geglu_fp32.json",
+                     "/root/ptocontri/dev/aclnn_bench/res_geglu_bf16.json",
+                     "/root/ptocontri/dev/aclnn_bench/res_geglu_fp32_2048.json"],
+  "raw_harness": ["/root/ptocontri/dev/vsaclnn-op-geglu-e000005/res.json (507901 failure record)",
+                  "/root/ptocontri/dev/vsaclnn-op-geglu-e000005/res_2048x2048.json",
+                  "/root/ptocontri/dev/vsaclnn-op-geglu-e000013/res.json",
+                  "/root/ptocontri/dev/vsaclnn-op-geglu-e000063/res.json"]
+ }
+}

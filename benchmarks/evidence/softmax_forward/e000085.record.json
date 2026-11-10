@@ -1,0 +1,28 @@
+{
+ "eid": "e000085",
+ "campaign": "c5",
+ "round": 13,
+ "wave": 1,
+ "cid": "r013w1-max-k16",
+ "level": "decision",
+ "family": "resident_contiguous_max_graph",
+ "family_sha": "3e4d1d2fbe6c",
+ "params": {
+  "max_segments_log2": 4,
+  "max_batch": 0
+ },
+ "source": "explicit",
+ "design": {
+  "artifact": "99743e6a617329b1"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "gain_pct": 97.8826,
+ "score": -0.021174208729088356,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 2,
+  "latency_us": 73.79,
+  "latency_min_us": 67.14
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "note": "e000094 has no decision record of its own; byte-identical carries e000067/e000096 (family champion_bf16_default_rsqrt README, artifact 1bd0d3a563d5d8d4). e000096 c6 carry eval below.",
+ "carry_eval": {
+  "eid": "e000096",
+  "campaign": "c6",
+  "family": "resident_prefix_streamed_fringe",
+  "verdict": "FAIL(min-latency gate)",
+  "metrics": {
+   "correct": 1,
+   "n_shapes": 2,
+   "latency_us": 53.81,
+   "latency_min_us": 52.84
+  },
+  "gain_pct": 97.196
+ }
+}

@@ -1,0 +1,36 @@
+{
+  "eid": "e000041",
+  "key": "b7ce754e2e5f3396",
+  "ts": "2026-11-06T11:42:32+0000",
+  "verifier": null,
+  "campaign": "c4",
+  "level": "decision",
+  "holdout": null,
+  "round": 9,
+  "wave": 1,
+  "cid": "bounded_column_ownership_slab_log2_3",
+  "family": "bf16_single_spmd_bounded_column_ownership",
+  "family_sha": "e7f0cd78f505",
+  "params": {
+    "CHUNK_SLAB_LOG2": 3
+  },
+  "source": "explicit",
+  "design": {
+    "artifact": "60fd7504757bde41"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "target_met": true,
+  "simulated": true,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 2,
+    "latency_us": 91.14,
+    "latency_min_us": 89.27
+  },
+  "error": null,
+  "infra": false,
+  "host_s": 20.9,
+  "gain_pct": 98.3552,
+  "score": -0.016447789907185668
+}

@@ -1,0 +1,36 @@
+{
+ "eid": "e000053",
+ "key": "b8a52a7f4f2f4b68",
+ "ts": "2026-11-07T22:45:52+0000",
+ "verifier": null,
+ "campaign": "c6",
+ "level": "decision",
+ "holdout": null,
+ "round": 16,
+ "wave": 2,
+ "cid": "packet-nonzero-word-decode",
+ "family": "capacity_packet_bitmap_sparse_replay",
+ "family_sha": "4ba67bc6fa1e",
+ "params": {
+  "decoder": 1
+ },
+ "source": "explicit",
+ "design": {
+  "artifact": "3c8e55e5a88a023d"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 2,
+  "latency_us": 1591.94,
+  "latency_min_us": 1331.74
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 25.7,
+ "gain_pct": 97.8167,
+ "score": -0.021833444859079138
+}

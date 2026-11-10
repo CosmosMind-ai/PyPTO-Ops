@@ -1,0 +1,34 @@
+{
+ "title": "Champions vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-07",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py (sha256 5c7b7aa4... identical across all domain verifiers and /root/ptocontri/pkg), latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py (pyacl + ctypes on libopapi.so): wall-clock per round (enqueue aclnn call(s) + acl.rt.synchronize_stream), median; aclnn executor fetched once via *GetWorkspaceSize, marked repeatable, reused across rounds (analogous to the pypto kernel being compiled once). Both sides are end-to-end wall clock including host dispatch.",
+  "shape_policy": "m-tier decision preset {M:4096, N:4096}; dtype = champion's native contract dtype (bf16)"
+ },
+ "aclnn_baseline_semantics": "aclnnGeluV2(approximate=tanh) — the tanh approximation matches the champion's formula exactly (y = 0.5x(1+tanh(sqrt(2/pi)(x+0.044715x^3)))). Single native op, no decomposition needed.",
+ "results": [
+  {
+   "champion": "e000041",
+   "campaign": "c4 (bf16, size=m)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": 93.66,
+   "pypto_correct": true,
+   "aclnn_latency_us": 76.31,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 7.75e-03,
+   "aclnn_composition": ["aclnnGeluV2(approximate=tanh)"],
+   "speedup_pypto_vs_aclnn": 0.81,
+   "note": "aclnnGeluV2 is ~1.23x faster at 4096x4096. Note the frozen-verifier holdout numbers (68.64 us) are geomeans over sealed shapes, not this preset point; the pypto number here is a fresh frozen-harness run at this exact shape."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": ["/root/ptocontri/dev/aclnn_bench/res_gelu_bf16.json"],
+  "raw_harness": ["/root/ptocontri/dev/vsaclnn-op-gelu-e000041/res.json"]
+ }
+}

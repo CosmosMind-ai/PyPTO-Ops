@@ -1,0 +1,28 @@
+{
+ "op": "fused_rms_norm_gated_decomp",
+ "shape": {
+  "M": 512,
+  "N": 1024,
+  "dtype": "fp32"
+ },
+ "correct": true,
+ "latency_us": 35.67,
+ "latency_min_us": 31.44,
+ "rounds": 100,
+ "warmup": 10,
+ "protocol": "wall-clock per round (enqueue aclnn + acl.rt.synchronize_stream), median of rounds; executor fetched once and reused",
+ "error": null,
+ "composition": [
+  "aclnnRmsNorm(epsilon=1e-6)",
+  "aclnnSilu",
+  "aclnnMul"
+ ],
+ "checks": [
+  {
+   "name": "y",
+   "max_abs_err": 1.9073486328125e-06,
+   "ok": true
+  }
+ ],
+ "max_abs_err": 1.9073486328125e-06
+}

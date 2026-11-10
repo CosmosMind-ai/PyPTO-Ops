@@ -1,0 +1,30 @@
+{
+  "eid": "e000017",
+  "campaign": "c1",
+  "round": 2,
+  "wave": 1,
+  "cid": "W1-spmd-nb16-c256",
+  "level": "decision",
+  "family": "spmd_slab",
+  "family_sha": "7e20ce2caed3",
+  "params": {
+    "n_blocks": 16,
+    "col_tile": 256,
+    "row_max": 32,
+    "stage": 2
+  },
+  "source": "explicit",
+  "design": {
+    "artifact": "c084e35ebc1b7380"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "gain_pct": 85.464,
+  "score": -0.14536004694442115,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 1,
+    "latency_us": 17.34,
+    "latency_min_us": 17.34
+  }
+}

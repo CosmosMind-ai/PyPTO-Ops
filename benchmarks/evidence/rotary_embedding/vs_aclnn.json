@@ -1,0 +1,46 @@
+{
+ "title": "Champion vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-08",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py, latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py: wall-clock per round (enqueue aclnn + sync), median; executor cached. Both sides end-to-end including host dispatch.",
+  "shape_policy": "s-tier {M:512,N:1024} (champion's native c1 contract shape) + m-tier {M:4096,N:4096}; dtype fp32 (champion contract)"
+ },
+ "results": [
+  {
+   "champion": "e000006",
+   "campaign": "c1 (fp32 s-tier)",
+   "shape": {"M": 512, "N": 1024, "dtype": "fp32"},
+   "pypto_latency_us": 55.77,
+   "pypto_correct": true,
+   "aclnn_latency_us": 58.15,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 0.0,
+   "aclnn_composition": ["aclnnMul x4", "aclnnAdd(alpha=-1)", "aclnnAdd(alpha=1)"],
+   "speedup_pypto_vs_aclnn": 1.04,
+   "note": "no native rotate-half aclnn op (aclnnRotaryPositionEmbedding is interleaved semantics); baseline is the 6-op elementwise decomposition on contiguous halves. aclnn decomposition is bit-exact vs golden at fp32."
+  },
+  {
+   "champion": "e000006",
+   "campaign": "c1 (fp32 s-tier)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "fp32"},
+   "pypto_latency_us": 409.02,
+   "pypto_correct": true,
+   "aclnn_latency_us": 327.72,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 0.0,
+   "aclnn_composition": ["aclnnMul x4", "aclnnAdd(alpha=-1)", "aclnnAdd(alpha=1)"],
+   "speedup_pypto_vs_aclnn": 0.80,
+   "note": "m-tier fp32 is out-of-contract scale-up for this s-tier champion; launches and stays correct but loses to the 6-op aclnn decomposition."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": ["evidence/vs_aclnn.aclnn.s.raw.json", "evidence/vs_aclnn.aclnn.m.raw.json"],
+  "raw_harness": ["evidence/vs_aclnn.pypto.s.raw.json", "evidence/vs_aclnn.pypto.m.raw.json"]
+ }
+}

@@ -1,0 +1,27 @@
+{
+  "eid": "e000031",
+  "campaign": "c4",
+  "round": 5,
+  "wave": 1,
+  "cid": "r005w1-balanced-grid20",
+  "level": "decision",
+  "family": "balanced_row_owner_grid",
+  "family_sha": "9b1f610d8bfc",
+  "params": {
+    "task_count": 20
+  },
+  "source": "promoted",
+  "design": {
+    "artifact": "cc756a1a8f0547f8"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "gain_pct": 78.0435,
+  "score": -0.21956521739130436,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 1,
+    "latency_us": 17.17,
+    "latency_min_us": 17.17
+  }
+}

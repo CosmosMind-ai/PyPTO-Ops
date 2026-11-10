@@ -1,0 +1,2 @@
+[2026-11-07T15:57:50+0000] champion.holdout {"kind": "champion.holdout", "eid": "e000006", "holdout_eid": "h000002", "verdict": "PASS", "holdout_gain_pct": 74.7022, "failed": [], "holdout_metrics": {"latency_us": 59.88, "correct": 1}, "contamination_flag": false}
+[2026-11-07T22:50:45+0000] champion.holdout {"kind": "champion.holdout", "eid": "e000020", "holdout_eid": "h000004", "verdict": "PASS", "holdout_gain_pct": 94.7784, "failed": [], "holdout_metrics": {"latency_us": 93.62, "correct": 1}, "contamination_flag": false}

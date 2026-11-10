@@ -1,0 +1,33 @@
+{
+ "title": "Champion vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-08",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py, latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py: wall-clock per round (enqueue aclnn + sync), median; executor cached. Both sides end-to-end including host dispatch.",
+  "shape_policy": "s-tier {M:512, N:1024} fp32 (champion's native c1 contract shape/dtype)"
+ },
+ "results": [
+  {
+   "champion": "e000005",
+   "campaign": "c1 (fp32 s-tier)",
+   "shape": {"M": 512, "N": 1024, "dtype": "fp32"},
+   "pypto_latency_us": 57.16,
+   "pypto_correct": true,
+   "aclnn_latency_us": 35.67,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 1.91e-06,
+   "aclnn_composition": ["aclnnRmsNorm(epsilon=1e-6)", "aclnnSilu", "aclnnMul"],
+   "speedup_pypto_vs_aclnn": 0.62,
+   "note": "no native gated-rmsnorm aclnn op; baseline is the 3-op unfused composition. At this small s-tier shape dispatch overhead dominates on both sides; the fused champion still loses to the native composition - honest negative result."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": "evidence/vs_aclnn.aclnn.raw.json",
+  "raw_harness": "evidence/vs_aclnn.pypto.raw.json"
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "title": "Champions vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-07",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py (sha256 5c7b7aa4... identical across all domain verifiers and /root/ptocontri/pkg), latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py (pyacl + ctypes on libopapi.so): wall-clock per round (enqueue aclnn call(s) + acl.rt.synchronize_stream), median; aclnn executor fetched once via *GetWorkspaceSize, marked repeatable, reused across rounds. Both sides are end-to-end wall clock including host dispatch.",
+  "shape_policy": "m-tier decision preset {M:4096, N:4096}; dtype = champion's native contract dtype (bf16)"
+ },
+ "aclnn_baseline_semantics": "aclnnSoftmaxBackward(gradOutput=dy, output=y, dim=-1) — the native fused backward op, identical semantics to our kernel (dx = y * (dy - sum(dy*y, -1)) with y the saved forward softmax output). Inputs match the champion contract: dy = randn, y = softmax(randn) row-normalized. Single native op, no decomposition needed.",
+ "results": [
+  {
+   "champion": "e000078",
+   "campaign": "c4 (bf16, size=m)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": 108.66,
+   "pypto_correct": true,
+   "aclnn_latency_us": 94.33,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 7.49e-05,
+   "aclnn_composition": ["aclnnSoftmaxBackward(dim=-1)"],
+   "speedup_pypto_vs_aclnn": 0.87,
+   "note": "aclnnSoftmaxBackward is ~1.15x faster at 4096x4096; our champion's headline gain (+96.93%) is vs the unfused same-DSL decomposition, not vs the native fused op."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": ["/root/ptocontri/dev/aclnn_bench/res_softmaxb_bf16.json"],
+  "raw_harness": ["/root/ptocontri/dev/vsaclnn-op-softmax-backward-e000078/res.json"]
+ }
+}

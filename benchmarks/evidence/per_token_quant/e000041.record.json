@@ -1,0 +1,39 @@
+{
+  "eid": "e000041",
+  "key": "3c7a79df12788de7",
+  "ts": "2026-11-07T04:07:50+0000",
+  "verifier": null,
+  "campaign": "c2",
+  "level": "decision",
+  "holdout": null,
+  "round": 7,
+  "wave": 1,
+  "cid": "r007w1-fused-spmd-r16-q256-decision",
+  "family": "bf16_fused_spmd_r16_q256_with_fp32_stream",
+  "family_sha": "3a6de92d3fee",
+  "params": {
+    "row_log2": 4,
+    "reduce_col_log2": 8,
+    "quant_col_log2": 8,
+    "dispatch_spmd": 1
+  },
+  "source": "explicit",
+  "design": {
+    "artifact": "b58d11da60c2806f"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "target_met": true,
+  "simulated": true,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 1,
+    "latency_us": 27.56,
+    "latency_min_us": 27.56
+  },
+  "error": null,
+  "infra": false,
+  "host_s": 11.0,
+  "gain_pct": 73.8867,
+  "score": -0.26113321963236685
+}

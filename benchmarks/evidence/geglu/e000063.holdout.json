@@ -1,0 +1,13 @@
+{
+ "eid": "e000063",
+ "holdout_eid": "h000008",
+ "verdict": "PASS",
+ "holdout_gain_pct": 98.3669,
+ "failed": [],
+ "holdout_metrics": {
+  "latency_us": 123.96,
+  "correct": 1,
+  "latency_min_us": 97.95
+ },
+ "contamination_flag": false
+}

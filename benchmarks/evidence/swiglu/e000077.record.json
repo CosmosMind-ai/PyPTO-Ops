@@ -1,0 +1,36 @@
+{
+  "eid": "e000077",
+  "key": "125c01d7d67776e2",
+  "ts": "2026-11-07T00:37:25+0000",
+  "verifier": null,
+  "campaign": "c5",
+  "level": "decision",
+  "holdout": null,
+  "round": 23,
+  "wave": 2,
+  "cid": "r023w2-exact-epilogue-p7168",
+  "family": "bf16_interior_packet_fixed_interval_r023_v2",
+  "family_sha": "73f2af06ebcf",
+  "params": {
+    "packet_case": 0
+  },
+  "source": "explicit",
+  "design": {
+    "artifact": "5222bad9fb6e8101"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "target_met": true,
+  "simulated": true,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 2,
+    "latency_us": 73.89,
+    "latency_min_us": 70.95
+  },
+  "error": null,
+  "infra": false,
+  "host_s": 19.6,
+  "gain_pct": 98.3589,
+  "score": -0.016411065086786084
+}

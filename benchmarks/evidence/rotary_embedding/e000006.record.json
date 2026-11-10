@@ -1,0 +1,38 @@
+{
+ "eid": "e000006",
+ "key": "48afa0524bc38c12",
+ "ts": "2026-11-07T00:32:08+0000",
+ "verifier": null,
+ "campaign": "c1",
+ "level": "decision",
+ "holdout": null,
+ "round": 1,
+ "wave": 1,
+ "cid": "parallel_pipeline",
+ "family": "paired_parallel",
+ "family_sha": "4f2b874fbc58",
+ "params": {
+  "row_tile": 8,
+  "col_tile": 128,
+  "schedule": 1
+ },
+ "source": "promoted",
+ "design": {
+  "artifact": "aedf667abea91eda"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 1,
+  "latency_us": 56.52,
+  "latency_min_us": 56.52
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 10.8,
+ "gain_pct": 48.36,
+ "score": -0.5164001827318411
+}

@@ -1,0 +1,33 @@
+{
+ "title": "Champion vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-08",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py, latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py: wall-clock per round (enqueue aclnn + sync), median; executor cached. Both sides end-to-end including host dispatch.",
+  "shape_policy": "m-tier shape {M:4096, N:4096}; dtype bf16 (champion's native contract dtype)"
+ },
+ "results": [
+  {
+   "champion": "e000039",
+   "campaign": "c3 (bf16 m-tier)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": 138.14,
+   "pypto_correct": true,
+   "aclnn_latency_us": 139.44,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 3.12e-02,
+   "aclnn_composition": ["aclnnAdd", "aclnnLayerNorm(eps=1e-5)"],
+   "speedup_pypto_vs_aclnn": 1.01,
+   "note": "baseline omits the xhat output our kernel also emits (native pair cannot produce it without extra elementwise ops), so it is a lower bound on the native decomposition cost; decomp rounds h to bf16 before LN, unlike our fp32 h path."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": "evidence/vs_aclnn.aclnn.raw.json",
+  "raw_harness": "evidence/vs_aclnn.pypto.raw.json"
+ }
+}

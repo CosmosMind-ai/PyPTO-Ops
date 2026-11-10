@@ -1,0 +1,41 @@
+{
+ "eid": "e000020",
+ "key": "446fbfbc2d645866",
+ "ts": "2026-11-07T22:50:13+0000",
+ "verifier": null,
+ "campaign": "c2",
+ "level": "decision",
+ "holdout": null,
+ "round": 4,
+ "wave": 1,
+ "cid": "r004w1-r32-c256-s2-decision",
+ "family": "c2_low_live_halo_pipeline_v2",
+ "family_sha": "f3ae45e4d378",
+ "params": {
+  "row_tile": 32,
+  "col_tile": 256,
+  "target_tasks": 96,
+  "partition_mode": 1,
+  "staging_mode": 1,
+  "pipeline_stages": 2
+ },
+ "source": "explicit",
+ "design": {
+  "artifact": "21aedc88e21115e1"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 2,
+  "latency_us": 114.61,
+  "latency_min_us": 107.14
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 21.8,
+ "gain_pct": 96.6728,
+ "score": -0.03327159561991245
+}

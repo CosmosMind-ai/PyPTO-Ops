@@ -1,0 +1,29 @@
+{
+ "eid": "e000006",
+ "campaign": "c1",
+ "round": 1,
+ "wave": 1,
+ "cid": "r001-w1-resident-r8-div",
+ "level": "decision",
+ "family": "resident_row_swiglu_quant",
+ "family_sha": "ed6867ca0d56",
+ "params": {
+  "row_tile": 8,
+  "fallback_col_tile": 256,
+  "arithmetic_mode": 0
+ },
+ "source": "promoted",
+ "design": {
+  "artifact": "8cb049896b69afbd"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "gain_pct": 79.1487,
+ "score": -0.20851250548486178,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 1,
+  "latency_us": 47.52,
+  "latency_min_us": 47.52
+ }
+}

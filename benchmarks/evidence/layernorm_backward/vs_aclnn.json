@@ -1,0 +1,49 @@
+{
+ "title": "Champions vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-07",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py (sha256 5c7b7aa4... identical across all domain verifiers and /root/ptocontri/pkg), latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py (pyacl + ctypes on libopapi.so): wall-clock per round (enqueue aclnn call(s) + acl.rt.synchronize_stream), median; aclnn executor fetched once via *GetWorkspaceSize, marked repeatable, reused across rounds. Both sides are end-to-end wall clock including host dispatch.",
+  "shape_policy": "primary = champion's native decision preset {M:512, N:1024, bf16} (s-tier campaign); secondary = m-tier {M:4096, N:4096} for cross-op comparability"
+ },
+ "aclnn_baseline_semantics": "Our kernel takes (x, dy, gamma) and produces dx/dgamma/dbeta in ONE call, recomputing forward stats (mean, rstd) internally. aclnnLayerNormBackward requires mean/rstd as INPUTS, so the apples-to-apples baseline for a user holding only (x, dy, gamma) is aclnnLayerNorm (stats-producing forward pass) + aclnnLayerNormBackward(outputMask=[1,1,1]). Constraints found on-machine: gamma must be 1-D [N]; mean/rstd outputs must be [M,1] fp32; dgamma/dbeta must be 1-D [N] fp32 ([1,N] is silently accepted but returns NaN garbage — probed and rejected). eps=1e-5 matches our contract.",
+ "results": [
+  {
+   "champion": "e000037",
+   "campaign": "c3 (bf16, size=s)",
+   "shape": {"M": 512, "N": 1024, "dtype": "bf16"},
+   "pypto_latency_us": 36.17,
+   "pypto_correct": true,
+   "aclnn_latency_us": 88.60,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 3.01e-02,
+   "aclnn_composition": ["aclnnLayerNorm(eps=1e-5, stats only)", "aclnnLayerNormBackward(outputMask=[1,1,1])"],
+   "speedup_pypto_vs_aclnn": 2.45,
+   "note": "at its native s-tier preset the fused single-call kernel is 2.45x faster than the native two-call composition (and aclnnLayerNormBackward alone cannot even run without a stats-producing pass)."
+  },
+  {
+   "champion": "e000037",
+   "campaign": "c3 (bf16, size=s)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": 720.23,
+   "pypto_correct": true,
+   "aclnn_latency_us": 282.66,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 3.12e-02,
+   "aclnn_composition": ["aclnnLayerNorm(eps=1e-5, stats only)", "aclnnLayerNormBackward(outputMask=[1,1,1])"],
+   "speedup_pypto_vs_aclnn": 0.39,
+   "note": "OUT-OF-CAMPAIGN shape: e000037 is an s-tier champion (resident/atomic small-row design); at 4096x4096 it dispatches to its generic streamed path and is 2.6x slower than aclnn. Recorded as-is for comparability; not the campaign's claimed operating point."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": ["/root/ptocontri/dev/aclnn_bench/res_lnb_bf16_512.json",
+                     "/root/ptocontri/dev/aclnn_bench/res_lnb_bf16_4096.json"],
+  "raw_harness": ["/root/ptocontri/dev/vsaclnn-op-layernorm-backward-e000037/res.json",
+                  "/root/ptocontri/dev/vsaclnn-op-layernorm-backward-e000037/res_4096.json"]
+ }
+}

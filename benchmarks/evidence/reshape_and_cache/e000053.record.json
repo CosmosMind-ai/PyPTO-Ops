@@ -1,0 +1,36 @@
+{
+ "eid": "e000053",
+ "key": "46b450a9c11f8e06",
+ "ts": "2026-11-07T22:40:43+0000",
+ "verifier": null,
+ "campaign": "c4",
+ "level": "decision",
+ "holdout": null,
+ "round": null,
+ "wave": null,
+ "cid": "CARRY-c4",
+ "family": "dual_owned_constant_selection",
+ "family_sha": "96bfdfc52a0d",
+ "params": {
+  "row_group_log2": 1
+ },
+ "source": "carry:e000051",
+ "design": {
+  "artifact": "97ee13a9b5672d1e"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 1,
+  "latency_us": 28.69,
+  "latency_min_us": 28.69
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 11.0,
+ "gain_pct": 99.8953,
+ "score": -0.0010474449863200545
+}

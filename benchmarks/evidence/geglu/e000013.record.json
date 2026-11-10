@@ -1,0 +1,29 @@
+{
+  "eid": "e000013",
+  "campaign": "c2",
+  "round": 2,
+  "wave": 1,
+  "cid": "decision-row-range-control",
+  "level": "decision",
+  "family": "geglu_bf16_bounded_v1",
+  "family_sha": "adb50b99289e",
+  "params": {
+    "mode": 0,
+    "owner_cap": 16,
+    "dtype": "bf16"
+  },
+  "source": "explicit",
+  "design": {
+    "artifact": "0c6e955d9d8d9fcc"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "gain_pct": 97.7262,
+  "score": -0.02273781175176637,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 2,
+    "latency_us": 174.07,
+    "latency_min_us": 157.2
+  }
+}

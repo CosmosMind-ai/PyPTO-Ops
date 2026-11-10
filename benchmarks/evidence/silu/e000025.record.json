@@ -1,0 +1,29 @@
+{
+  "eid": "e000025",
+  "campaign": "c2",
+  "round": 3,
+  "wave": 1,
+  "cid": "D1-burst-stage4",
+  "level": "decision",
+  "family": "burst_stream",
+  "family_sha": "62e121afb473",
+  "params": {
+    "blk": 4096,
+    "n_blocks": 40,
+    "stage": 4
+  },
+  "source": "explicit",
+  "design": {
+    "artifact": "9f48e451b969f206"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "gain_pct": 97.768,
+  "score": -0.022320404372312634,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 2,
+    "latency_us": 60.32,
+    "latency_min_us": 57.73
+  }
+}

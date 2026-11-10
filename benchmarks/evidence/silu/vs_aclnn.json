@@ -1,0 +1,61 @@
+{
+ "title": "Champions vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-07",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py, latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py (pyacl + ctypes on libopapi.so): wall-clock per round (enqueue aclnn call(s) + acl.rt.synchronize_stream), median; aclnn executor fetched once via *GetWorkspaceSize, marked repeatable, reused across rounds (analogous to the pypto kernel being compiled once). Both sides are end-to-end wall clock including host dispatch.",
+  "shape_policy": "m-tier shape {M:4096, N:4096}; dtype = each champion's native contract dtype"
+ },
+ "results": [
+  {
+   "champion": "e000017",
+   "campaign": "c1 (fp32)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "fp32"},
+   "pypto_latency_us": 110.13,
+   "pypto_correct": true,
+   "aclnn_latency_us": 47.46,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 4.77e-07,
+   "aclnn_composition": ["aclnnSilu"],
+   "speedup_pypto_vs_aclnn": 0.43,
+   "note": "aclnnSilu is 2.3x faster at this fp32 shape; e000017 was crowned in the s-tier campaign where dispatch overhead dominates."
+  },
+  {
+   "champion": "e000025",
+   "campaign": "c2 (bf16 mid)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": 63.0,
+   "pypto_correct": true,
+   "aclnn_latency_us": 60.38,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 7.79e-03,
+   "aclnn_composition": ["aclnnSilu"],
+   "speedup_pypto_vs_aclnn": 0.96
+  },
+  {
+   "champion": "e000064",
+   "campaign": "c3 (bf16 8192x8192)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": 58.48,
+   "pypto_correct": true,
+   "aclnn_latency_us": 60.38,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 7.79e-03,
+   "aclnn_composition": ["aclnnSilu"],
+   "speedup_pypto_vs_aclnn": 1.03,
+   "note": "same aclnn bf16 run as e000025's row (identical shape/dtype); e000064 edges out aclnnSilu."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": ["/root/ptocontri/dev/aclnn_bench/res_silu_fp32.json",
+                     "/root/ptocontri/dev/aclnn_bench/res_silu_bf16.json"],
+  "raw_harness": ["/root/ptocontri/dev/vsaclnn-op-silu-e000017/res.json",
+                  "/root/ptocontri/dev/vsaclnn-op-silu-e000025/res.json",
+                  "/root/ptocontri/dev/vsaclnn-op-silu-e000064/res.json"]
+ }
+}

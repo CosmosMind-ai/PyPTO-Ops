@@ -1,0 +1,44 @@
+{
+  "eid": "e000078",
+  "key": "e309751e0fc01b6f",
+  "ts": "2026-11-06T12:39:33+0000",
+  "verifier": null,
+  "campaign": "c4",
+  "level": "decision",
+  "holdout": null,
+  "round": 13,
+  "wave": 1,
+  "cid": "r013w1-long-wide-spmd-pipeline2",
+  "family": "phase_asymmetric_streamed_dispatch_launch_isolation",
+  "family_sha": "398f2a2d95a3",
+  "params": {
+    "long_launch_mode": 1,
+    "long_apply_pipeline": 1,
+    "long_row_log2": 4,
+    "long_reduce_col_log2": 10,
+    "long_apply_col_log2": 9,
+    "short_row_log2": 5,
+    "short_col_log2": 9,
+    "long_min_reference_chunks": 12,
+    "medium_work_log2": 20
+  },
+  "source": "promoted",
+  "design": {
+    "artifact": "28839e397802d7f6"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "target_met": true,
+  "simulated": true,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 2,
+    "latency_us": 99.8,
+    "latency_min_us": 91.07
+  },
+  "error": null,
+  "infra": false,
+  "host_s": 18.9,
+  "gain_pct": 97.2773,
+  "score": -0.027227142023102148
+}

@@ -1,0 +1,3 @@
+{"ts": "2026-11-04T22:29:56+0000", "kind": "champion.holdout", "eid": "e000017", "holdout_eid": "h000004", "verdict": "PASS", "holdout_gain_pct": 88.7537, "failed": [], "holdout_metrics": {"latency_us": 21.35, "correct": 1}, "contamination_flag": false}
+{"ts": "2026-11-04T23:26:34+0000", "kind": "champion.holdout", "eid": "e000025", "holdout_eid": "h000006", "verdict": "PASS", "holdout_gain_pct": 97.3005, "failed": [], "holdout_metrics": {"latency_us": 43.02, "correct": 1}, "contamination_flag": false}
+{"ts": "2026-11-05T05:33:12+0000", "kind": "champion.holdout", "eid": "e000064", "holdout_eid": "h000008", "verdict": "PASS", "holdout_gain_pct": 98.1454, "failed": [], "holdout_metrics": {"latency_us": 111.19, "correct": 1}, "contamination_flag": false}

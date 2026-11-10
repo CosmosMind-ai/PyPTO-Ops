@@ -1,0 +1,27 @@
+{
+  "eid": "e000064",
+  "campaign": "c3",
+  "round": 10,
+  "wave": 1,
+  "cid": "r010w1-input-bypass-conformance",
+  "level": "decision",
+  "family": "slab_cache_policy_v2",
+  "family_sha": "acf6df16a5b8",
+  "params": {
+    "input_bypass": 1
+  },
+  "source": "explicit",
+  "design": {
+    "artifact": "34e12bbee18b5427"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "gain_pct": 98.4753,
+  "score": -0.015246538530259184,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 2,
+    "latency_us": 169.81,
+    "latency_min_us": 160.3
+  }
+}

@@ -1,0 +1,34 @@
+{
+ "eid": "e000016",
+ "key": "ea5cb2eee1d5a7a1",
+ "ts": "2026-11-07T18:29:58+0000",
+ "verifier": null,
+ "campaign": "c2",
+ "level": "decision",
+ "holdout": null,
+ "round": 2,
+ "wave": 1,
+ "cid": "r002w1-compliant-baseline",
+ "family": "dtype_aware_resident_baseline",
+ "family_sha": "a0d35f7b90af",
+ "params": {},
+ "source": "explicit",
+ "design": {
+  "artifact": "27018726258b6809"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 1,
+  "latency_us": 2040.87,
+  "latency_min_us": 2040.87
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 12.6,
+ "gain_pct": 57.8408,
+ "score": -0.4215924443177452
+}

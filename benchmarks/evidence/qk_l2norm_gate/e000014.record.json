@@ -1,0 +1,38 @@
+{
+ "eid": "e000014",
+ "key": "370014b9c9e329cc",
+ "ts": "2026-11-07T23:12:04+0000",
+ "verifier": null,
+ "campaign": "c2",
+ "level": "decision",
+ "holdout": null,
+ "round": 5,
+ "wave": 1,
+ "cid": "r005w1-paired-spmd-dispatch",
+ "family": "qk_single_dispatch_owner_pipeline",
+ "family_sha": "943fa2089645",
+ "params": {
+  "split_owner": 0,
+  "bounded_epilogue": 0,
+  "pipeline_mode": 0
+ },
+ "source": "explicit",
+ "design": {
+  "artifact": "6ec716bee9218938"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 1,
+  "latency_us": 28.49,
+  "latency_min_us": 28.49
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 9.8,
+ "gain_pct": 82.1009,
+ "score": -0.17899101589495509
+}

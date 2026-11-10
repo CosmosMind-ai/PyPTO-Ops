@@ -1,0 +1,33 @@
+{
+ "eid": "e000023",
+ "campaign": "c2",
+ "round": 3,
+ "wave": 2,
+ "cid": "recover-direct-spmd-decision",
+ "level": "decision",
+ "family": "single_dispatch_centered",
+ "family_sha": "b2744562e409",
+ "params": {
+  "schedule_mode": 1,
+  "worker_count": 24,
+  "row_log2": 3,
+  "chunk_log2": 9,
+  "cache_enabled": 1,
+  "resident_budget_kib": 192,
+  "refine_steps": 1
+ },
+ "source": "explicit",
+ "design": {
+  "artifact": "92fba98a2a8ebf3c"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "gain_pct": 95.7314,
+ "score": -0.04268603072746344,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 2,
+  "latency_us": 110.69,
+  "latency_min_us": 103.05
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "eid": "e000060",
+ "key": "4be65f7e68ad83ac",
+ "ts": "2026-11-08T00:03:13+0000",
+ "verifier": null,
+ "campaign": "c4",
+ "level": "decision",
+ "holdout": null,
+ "round": 20,
+ "wave": 1,
+ "cid": "width-regime-pad-portfolio-g6",
+ "family": "resident_width_regime_pad_portfolio",
+ "family_sha": "542939515770",
+ "params": {
+  "wide_min_groups": 6
+ },
+ "source": "explicit",
+ "design": {
+  "artifact": "6d4aafe3fbff20c1"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 2,
+  "latency_us": 84.83,
+  "latency_min_us": 74.67
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 20.9,
+ "gain_pct": 98.5384,
+ "score": -0.014616034046072469
+}

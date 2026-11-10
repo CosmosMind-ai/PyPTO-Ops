@@ -1,0 +1,28 @@
+{
+ "eid": "e000051",
+ "campaign": "c3",
+ "round": 7,
+ "wave": 1,
+ "cid": "r007-w1-balanced48-decision",
+ "level": "decision",
+ "family": "mish_balanced_pair_ownership",
+ "family_sha": "2fd7d92a1840",
+ "params": {
+  "ownership_mode": 1,
+  "grid_index": 2
+ },
+ "source": "explicit",
+ "design": {
+  "artifact": "316b87ed5a6b34c1"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "gain_pct": 98.7186,
+ "score": -0.012813575757575756,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 2,
+  "latency_us": 66.07,
+  "latency_min_us": 62.73
+ }
+}

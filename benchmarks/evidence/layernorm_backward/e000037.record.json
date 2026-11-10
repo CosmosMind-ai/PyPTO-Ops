@@ -1,0 +1,39 @@
+{
+  "eid": "e000037",
+  "key": "4d54fd90b0cf192c",
+  "ts": "2026-11-06T14:45:44+0000",
+  "verifier": null,
+  "campaign": "c3",
+  "level": "decision",
+  "holdout": null,
+  "round": 8,
+  "wave": 1,
+  "cid": "r008w1-fused-zero-atomic",
+  "family": "fused_centered_zero_atomic",
+  "family_sha": "0280adf373fa",
+  "params": {
+    "micro_rows": 8,
+    "group_rows": 32,
+    "init_cols": 128,
+    "completion_mode": 1
+  },
+  "source": "promoted",
+  "design": {
+    "artifact": "5977f6fc7630353b"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "target_met": true,
+  "simulated": true,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 1,
+    "latency_us": 35.78,
+    "latency_min_us": 35.78
+  },
+  "error": null,
+  "infra": false,
+  "host_s": 13.7,
+  "gain_pct": 89.2313,
+  "score": -0.10768675133931259
+}

@@ -1,0 +1,35 @@
+{
+ "title": "Champion vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-08",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py, latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py: wall-clock per round (enqueue aclnn + sync), median; executor cached. Both sides end-to-end including host dispatch.",
+  "shape_policy": "m-tier shape {M:4096, N:4096}; dtype bf16 (champion's native contract dtype)"
+ },
+ "results": [
+  {
+   "champion": "e000053",
+   "campaign": "c6 (bf16 m-tier)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": 1900.74,
+   "pypto_correct": true,
+   "aclnn_latency_us": 719.4,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 1.38e-03,
+   "aclnn_composition": ["aclnnSoftmax(dim=-1)", "aclnnTopk(k=8, dim=-1)",
+                          "aclnnReduceSum(dim=-1, keepdim)", "aclnnAdds(1e-8)",
+                          "aclnnDiv(broadcast)"],
+   "speedup_pypto_vs_aclnn": 0.38,
+   "note": "baseline omits the full masked-probability map our kernel also emits (lower bound on native cost). Champion still 2.6x slower than aclnnTopk-based composition at m-tier - honest negative result; value of this PR is contract-correctness + gain vs the naive same-DSL decomposition."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": "evidence/vs_aclnn.aclnn.raw.json",
+  "raw_harness": "evidence/vs_aclnn.pypto.raw.json"
+ }
+}

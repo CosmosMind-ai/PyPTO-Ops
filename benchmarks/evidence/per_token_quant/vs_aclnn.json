@@ -1,0 +1,63 @@
+{
+ "title": "Champions vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-07",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py (sha256 5c7b7aa4... identical across all domain verifiers and /root/ptocontri/pkg), latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py (pyacl + ctypes on libopapi.so): wall-clock per round (enqueue aclnn call(s) + acl.rt.synchronize_stream), median; aclnn executor fetched once via *GetWorkspaceSize, marked repeatable, reused across rounds. Both sides are end-to-end wall clock including host dispatch.",
+  "shape_policy": "primary = champion's native decision preset {M:512, N:1024, bf16} (s-tier campaign); secondary = public-support maximum corner {M:1152, N:2048}; m-tier {M:4096,N:4096} attempted and recorded"
+ },
+ "aclnn_baseline_semantics": "No single aclnn op implements exact symmetric per-token dynamic INT8 quant, so the native baseline is the unfused decomposition a user writes: aclnnAbs -> aclnnAmax(dim=-1, keepdim) -> aclnnCast(fp32) -> aclnnDivs(127) [=scale] -> aclnnCast(fp32) -> aclnnDiv(broadcast scale) -> aclnnRound -> aclnnClamp(-127,127) -> aclnnCast(int8) [=q]. abs/amax are exact in bf16 so the bf16-then-cast order is bit-identical to cast-then-reduce; scale output matches our fp32 golden to 1.9e-9. No all-zero-row guard (probability-0 under randn; a guard would add an aclnnWhere stage). KNOWN DIVERGENCE: aclnnDiv is not bit-identical to torch fp32 division, so exact .5 ties in the quotient round differently in ~0.02-0.03% of elements (off by exactly one count, e.g. 63.5 -> 63 instead of RNE 64); aclnnRound itself is RNE (probed: 63.5->64, -63.5->-64, 0.5->0). q check therefore passes at rtol=0/atol=1 with n_mismatch recorded; scale is effectively exact.",
+ "results": [
+  {
+   "champion": "e000041",
+   "campaign": "c2 (bf16, size=s)",
+   "shape": {"M": 512, "N": 1024, "dtype": "bf16"},
+   "pypto_latency_us": 27.81,
+   "pypto_correct": true,
+   "aclnn_latency_us": 105.95,
+   "aclnn_correct": true,
+   "aclnn_q_mismatch": "110 / 524288 elements (0.021%), all off-by-one at exact .5 quotient ties (aclnnDiv ulp divergence, see semantics note); scale exact to 1.9e-9",
+   "aclnn_composition": ["aclnnAbs", "aclnnAmax(dim=-1, keepdim)", "aclnnCast(bf16->fp32)", "aclnnDivs(127)", "aclnnCast(bf16->fp32)", "aclnnDiv(broadcast scale)", "aclnnRound", "aclnnClamp(-127,127)", "aclnnCast(fp32->int8)"],
+   "speedup_pypto_vs_aclnn": 3.81
+  },
+  {
+   "champion": "e000041",
+   "campaign": "c2 (bf16, size=s)",
+   "shape": {"M": 1152, "N": 2048, "dtype": "bf16"},
+   "pypto_latency_us": 63.34,
+   "pypto_correct": true,
+   "aclnn_latency_us": 142.88,
+   "aclnn_correct": true,
+   "aclnn_q_mismatch": "724 / 2359296 elements (0.031%), same off-by-one tie pattern; scale exact to 1.9e-9",
+   "aclnn_composition": ["aclnnAbs", "aclnnAmax(dim=-1, keepdim)", "aclnnCast(bf16->fp32)", "aclnnDivs(127)", "aclnnCast(bf16->fp32)", "aclnnDiv(broadcast scale)", "aclnnRound", "aclnnClamp(-127,127)", "aclnnCast(fp32->int8)"],
+   "speedup_pypto_vs_aclnn": 2.26,
+   "note": "largest corner of the campaign's public support (M<=1152, N<=2048)."
+  },
+  {
+   "champion": "e000041",
+   "campaign": "c2 (bf16, size=s)",
+   "shape": {"M": 4096, "N": 4096, "dtype": "bf16"},
+   "pypto_latency_us": null,
+   "pypto_correct": false,
+   "pypto_error": "ValueError: Vec buffer usage (229568 bytes) exceeds platform limit (188416 bytes) — s-tier champion does not compile at m-tier 4096x4096 (outside its campaign shape support; analogous to geglu e000005's 507901 at m-tier)",
+   "aclnn_latency_us": 641.46,
+   "aclnn_correct": true,
+   "aclnn_q_mismatch": "4978 / 16777216 elements (0.030%), same off-by-one tie pattern",
+   "speedup_pypto_vs_aclnn": null,
+   "note": "recorded as-is per the geglu precedent; the 1152x2048 row is the meaningful upper-corner comparison."
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": ["/root/ptocontri/dev/aclnn_bench/res_quant_bf16_512.json",
+                     "/root/ptocontri/dev/aclnn_bench/res_quant_bf16_1152.json",
+                     "/root/ptocontri/dev/aclnn_bench/res_quant_bf16_4096.json"],
+  "raw_harness": ["/root/ptocontri/dev/vsaclnn-op-per-token-quant-e000041/res.json",
+                  "/root/ptocontri/dev/vsaclnn-op-per-token-quant-e000041/res_1152.json",
+                  "/root/ptocontri/dev/vsaclnn-op-per-token-quant-e000041/res_4096.json (launch failure record)"]
+ }
+}

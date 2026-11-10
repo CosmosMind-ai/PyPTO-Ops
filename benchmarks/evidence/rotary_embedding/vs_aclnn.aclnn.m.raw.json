@@ -1,0 +1,33 @@
+{
+ "op": "rotary_embedding_decomp",
+ "shape": {
+  "M": 4096,
+  "N": 4096,
+  "dtype": "fp32"
+ },
+ "correct": true,
+ "latency_us": 327.72,
+ "latency_min_us": 322.62,
+ "rounds": 100,
+ "warmup": 10,
+ "protocol": "wall-clock per round (enqueue aclnn + acl.rt.synchronize_stream), median of rounds; executor fetched once and reused",
+ "error": null,
+ "composition": [
+  "aclnnMul x4",
+  "aclnnAdd(alpha=-1)",
+  "aclnnAdd(alpha=1)"
+ ],
+ "checks": [
+  {
+   "name": "y1",
+   "max_abs_err": 0.0,
+   "ok": true
+  },
+  {
+   "name": "y2",
+   "max_abs_err": 0.0,
+   "ok": true
+  }
+ ],
+ "max_abs_err": 0.0
+}

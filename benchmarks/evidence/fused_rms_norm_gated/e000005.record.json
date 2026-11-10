@@ -1,0 +1,38 @@
+{
+ "eid": "e000005",
+ "key": "2d026dae1c35de33",
+ "ts": "2026-11-07T16:21:30+0000",
+ "verifier": null,
+ "campaign": "c1",
+ "level": "decision",
+ "holdout": null,
+ "round": 1,
+ "wave": 1,
+ "cid": "r001-w1-resident-r8-cap8192",
+ "family": "fused_resident_silu",
+ "family_sha": "9da8b20f24d2",
+ "params": {
+  "row_log2": 3,
+  "resident_elements_log2": 13,
+  "fallback_col_log2": 9
+ },
+ "source": "explicit",
+ "design": {
+  "artifact": "130c294bf5389bd5"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 1,
+  "latency_us": 58.48,
+  "latency_min_us": 58.48
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 10.8,
+ "gain_pct": 70.3418,
+ "score": -0.29658180342833956
+}

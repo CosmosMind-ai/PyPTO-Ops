@@ -1,0 +1,13 @@
+{
+ "kind": "champion.holdout",
+ "eid": "e000014",
+ "holdout_eid": "h000004",
+ "verdict": "PASS",
+ "holdout_gain_pct": 82.7198,
+ "failed": [],
+ "holdout_metrics": {
+  "latency_us": 32.11,
+  "correct": 1
+ },
+ "contamination_flag": false
+}

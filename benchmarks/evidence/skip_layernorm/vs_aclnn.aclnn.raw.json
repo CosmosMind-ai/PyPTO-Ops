@@ -1,0 +1,32 @@
+{
+ "op": "skip_layernorm_decomp",
+ "shape": {
+  "M": 4096,
+  "N": 4096,
+  "dtype": "bf16"
+ },
+ "correct": true,
+ "latency_us": 139.44,
+ "latency_min_us": 136.27,
+ "rounds": 100,
+ "warmup": 10,
+ "protocol": "wall-clock per round (enqueue aclnn + acl.rt.synchronize_stream), median of rounds; executor fetched once and reused",
+ "error": null,
+ "composition": [
+  "aclnnAdd",
+  "aclnnLayerNorm(eps=1e-5)"
+ ],
+ "checks": [
+  {
+   "name": "y",
+   "max_abs_err": 0.031241416931152344,
+   "ok": true
+  },
+  {
+   "name": "h",
+   "max_abs_err": 0.015625,
+   "ok": true
+  }
+ ],
+ "max_abs_err": 0.031241416931152344
+}

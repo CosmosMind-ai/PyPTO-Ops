@@ -1,0 +1,41 @@
+{
+ "eid": "e000050",
+ "key": "01087bf6603a1077",
+ "ts": "2026-11-07T21:44:29+0000",
+ "verifier": null,
+ "campaign": "c2",
+ "level": "decision",
+ "holdout": null,
+ "round": 6,
+ "wave": 2,
+ "cid": "r006w2-S16-width256-bounded-repair",
+ "family": "exact_extraction_owner_repair",
+ "family_sha": "5c22cca4311b",
+ "params": {
+  "upstream_row_tile": 64,
+  "extraction_rows": 16,
+  "extract_width_cap": 256,
+  "extraction_element_cap": 8192,
+  "execution_mode": 2,
+  "group_element_cap": 8192
+ },
+ "source": "promoted",
+ "design": {
+  "artifact": "6bef219d368fc80a"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 1,
+  "latency_us": 866.68,
+  "latency_min_us": 866.68
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 11.8,
+ "gain_pct": 85.0676,
+ "score": -0.14932408916578507
+}

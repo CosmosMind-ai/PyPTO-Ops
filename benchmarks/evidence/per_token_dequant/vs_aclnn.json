@@ -1,0 +1,33 @@
+{
+ "title": "Champion vs native Ascend aclnn (CANN 9.0.0), measured 2026-11-07",
+ "host": "910C (a2a3), driver 26.0.rc1",
+ "protocol": {
+  "rounds": 100,
+  "warmup": 10,
+  "stat": "median per-round latency (us)",
+  "pypto_side": "frozen remote_harness.py, latency_us = median per-round effective_us (PYPTO_BENCH=1)",
+  "aclnn_side": "tools/aclnn_bench.py (pyacl + ctypes on libopapi.so): wall-clock per round (enqueue + acl.rt.synchronize_stream), median; executor fetched once and reused. Both sides end-to-end wall clock including host dispatch.",
+  "shape_policy": "m-tier shape {M:4096, N:4096} (domain contract: q int8 [M,N], scale fp32 [M,1], x fp32)"
+ },
+ "aclnn_baseline_semantics": "No single aclnn op performs per-token int8 dequant with a [M,1] fp32 scale at this contract, so the native baseline is the unfused decomposition aclnnCast(int8->fp32) + aclnnMul(broadcast scale [M,1]) — two global-memory round-trips, matching the two-pass decomposition the domain's own baseline encodes.",
+ "results": [
+  {
+   "champion": "e000031",
+   "campaign": "c1",
+   "shape": {"M": 4096, "N": 4096},
+   "pypto_latency_us": 79.68,
+   "pypto_correct": true,
+   "aclnn_latency_us": 74.4,
+   "aclnn_correct": true,
+   "aclnn_max_abs_err": 0.0,
+   "aclnn_composition": ["aclnnCast(int8->fp32)", "aclnnMul(broadcast scale [M,1])"],
+   "speedup_pypto_vs_aclnn": 0.93
+  }
+ ],
+ "convention": "speedup_pypto_vs_aclnn = aclnn_us / pypto_us; >1 means the pypto champion is faster",
+ "artifacts": {
+  "bench_tool": "tools/aclnn_bench.py (repo), remote copy /root/ptocontri/dev/aclnn_bench/",
+  "raw_aclnn_json": ["/root/ptocontri/dev/aclnn_bench/res_dequant.json"],
+  "raw_harness": ["/root/ptocontri/dev/vsaclnn-op-per-token-dequant-e000031/res.json"]
+ }
+}

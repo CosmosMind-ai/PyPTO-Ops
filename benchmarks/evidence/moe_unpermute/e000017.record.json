@@ -1,0 +1,42 @@
+{
+ "eid": "e000017",
+ "key": "dec9f21403569d5c",
+ "ts": "2026-11-07T19:42:47+0000",
+ "verifier": null,
+ "campaign": "c1",
+ "level": "decision",
+ "holdout": null,
+ "round": 2,
+ "wave": 1,
+ "cid": "r002w1-packed-only",
+ "family": "inverse_token_packed_workspace",
+ "family_sha": "607f4011754c",
+ "params": {
+  "pack_routes": 1,
+  "full_chunk_fastpath": 0,
+  "shape_policy": 0,
+  "col_cap": 1024,
+  "token_tile": 16,
+  "map_row_tile": 64,
+  "map_line_words": 16
+ },
+ "source": "promoted",
+ "design": {
+  "artifact": "e734f4a4e96a5130"
+ },
+ "verdict": "PASS",
+ "failed": [],
+ "target_met": true,
+ "simulated": true,
+ "metrics": {
+  "correct": 1,
+  "n_shapes": 1,
+  "latency_us": 1672.0,
+  "latency_min_us": 1672.0
+ },
+ "error": null,
+ "infra": false,
+ "host_s": 10.8,
+ "gain_pct": 45.3254,
+ "score": -0.5467464986314987
+}

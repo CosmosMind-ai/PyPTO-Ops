@@ -1,0 +1,17 @@
+{
+  "host": "910C",
+  "device": "1",
+  "results": [
+    {
+      "correct": true,
+      "latency_us": 56.52,
+      "error": null,
+      "execution_time_s": 3.4528744220733643,
+      "shape": {
+        "M": 512,
+        "N": 1024,
+        "dtype": "fp32"
+      }
+    }
+  ]
+}

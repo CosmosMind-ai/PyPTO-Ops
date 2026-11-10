@@ -1,0 +1,38 @@
+{
+  "eid": "e000066",
+  "key": "4d846300f58281f1",
+  "ts": "2026-11-06T14:27:10+0000",
+  "verifier": null,
+  "campaign": "c6",
+  "level": "decision",
+  "holdout": null,
+  "round": 12,
+  "wave": 2,
+  "cid": "r012-continuous-early-wide",
+  "family": "resident_continuous_phase_carry_v2",
+  "family_sha": "b5e7ed0d9c8a",
+  "params": {
+    "wide_topology": 2,
+    "mid_topology": -1,
+    "acquisition_phase": 2
+  },
+  "source": "promoted",
+  "design": {
+    "artifact": "136d1b722e030da2"
+  },
+  "verdict": "PASS",
+  "failed": [],
+  "target_met": true,
+  "simulated": true,
+  "metrics": {
+    "correct": 1,
+    "n_shapes": 2,
+    "latency_us": 83.32,
+    "latency_min_us": 80.96
+  },
+  "error": null,
+  "infra": false,
+  "host_s": 20.8,
+  "gain_pct": 97.8037,
+  "score": -0.021962901359369683
+}

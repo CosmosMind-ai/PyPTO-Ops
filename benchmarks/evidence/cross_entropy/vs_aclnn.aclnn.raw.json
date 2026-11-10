@@ -1,0 +1,32 @@
+{
+ "op": "cross_entropy",
+ "shape": {
+  "M": 4096,
+  "N": 4096,
+  "dtype": "bf16"
+ },
+ "correct": true,
+ "latency_us": 275.8,
+ "latency_min_us": 270.37,
+ "rounds": 100,
+ "warmup": 10,
+ "protocol": "wall-clock per round (enqueue aclnn + acl.rt.synchronize_stream), median of rounds; executor fetched once and reused",
+ "error": null,
+ "composition": [
+  "aclnnCrossEntropyLoss(reduction=mean)",
+  "aclnnCrossEntropyLossGrad(reduction=mean)"
+ ],
+ "checks": [
+  {
+   "name": "dlogits",
+   "max_abs_err": 4.780886229127645e-07,
+   "ok": true
+  },
+  {
+   "name": "loss",
+   "max_abs_err": 0.0065708160400390625,
+   "ok": true
+  }
+ ],
+ "max_abs_err": 0.0065708160400390625
+}

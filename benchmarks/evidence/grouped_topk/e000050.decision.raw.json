@@ -1,0 +1,17 @@
+{
+  "host": "910c",
+  "device": "0",
+  "results": [
+    {
+      "correct": true,
+      "latency_us": 866.6800000000001,
+      "error": null,
+      "execution_time_s": 4.604882478713989,
+      "shape": {
+        "M": 512,
+        "N": 1024,
+        "dtype": "bf16"
+      }
+    }
+  ]
+}
