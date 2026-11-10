@@ -1,5 +1,13 @@
 # PyPTO-Ops
 
+**English** | [中文](README.zh-CN.md)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Platform](https://img.shields.io/badge/Platform-Ascend%20910C-blue)
+![CANN](https://img.shields.io/badge/CANN-%E2%89%A5%209.0-orange)
+
+> Part of the **CosmosMind PyPTO kernel series** for Ascend — all kernels driven by [MetaRSI](https://www.cosmosmind.ai/research/metarsi-v1).
+
 A [FlagGems](https://github.com/FlagOpen/FlagGems)-style operator library for
 **LLM inference on Ascend 910C**, written in [PyPTO](https://github.com/hw-native-sys/pypto) —
 fusion and critical-path operators covering the vLLM-class serving stack:
@@ -118,8 +126,8 @@ python tests/test_all.py --device 0 --op per_token_quant
 
 ## Related repositories
 
-- [PyPTO-FlashKDA](https://github.com/CosmosMind-ai/pypto-flashkda): Kimi Delta Attention (forward + backward)
-- [PyPTO-FlashDSA](https://github.com/CosmosMind-ai/pypto-flashdsa): DeepSeek Sparse Attention (V4.1) on 910C
+- [PyPTO-FlashKDA](https://github.com/CosmosMind-ai/PyPTO-FlashKDA): Kimi Delta Attention (forward + backward)
+- [PyPTO-FlashDSA](https://github.com/CosmosMind-ai/PyPTO-FlashDSA): DeepSeek Sparse Attention (V4.1) on 910C
 
 ## License
 
